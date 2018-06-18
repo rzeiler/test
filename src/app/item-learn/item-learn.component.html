@@ -1,0 +1,20 @@
+
+
+
+<ul>
+  <li *ngFor="let item of items | async">
+    <a [ngClass]="{'Red': item.isRight}" (click)="validateItem(item)">{{item.text}}</a>
+  </li>
+</ul>
+<h1>lern lists</h1>
+
+<mat-selection-list #shoes>
+  <mat-list-option *ngFor="let shoe of typesOfShoes">
+    <span (click)="open(shoe)" >{{shoe}}</span>
+
+  </mat-list-option>
+</mat-selection-list>
+
+<button class="page_fab_button" mat-fab color="primary">
+  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+</button>
