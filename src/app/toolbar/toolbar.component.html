@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <span *ngIf="toolbarRetrunLink;" [routerLink]=toolbarRetrunLink mat-button>
+    <mat-icon aria-label="Abmelden">chevron_left</mat-icon> {{toolbarTitle}}
+  </span>
+  <span *ngIf="!toolbarRetrunLink;">{{toolbarTitle}}</span>
+  <span class="app-space"></span>
+  <app-user-auth></app-user-auth>
+  <ng-content></ng-content>
+</mat-toolbar>

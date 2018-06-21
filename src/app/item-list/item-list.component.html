@@ -1,8 +1,0 @@
-<ul>
-  <li *ngFor="let item of items | async">
-    <input type="text" #updatesize [value]="item.size" />
-    <input type="text" #updatetext [value]="item.text" />
-    <button (click)="updateListItem(item.key, updatetext.value,updatesize.value)">Update</button>
-    <button (click)="deleteListItem(item.key)">Delete</button>
-  </li>
-</ul>

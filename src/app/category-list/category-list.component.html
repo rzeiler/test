@@ -1,0 +1,18 @@
+<app-toolbar toolbarTitle="Kategortien" (voted)="onVoted($event)" toolbarDeleteMatBadge="{{checkedCount}}">
+  <button class="animatedicon" mat-icon-button *ngIf="checkedCount > 0;">
+      <mat-icon matBadge="{{checkedCount}}" matBadgeColor="primary" matBadgePosition="above after" aria-label="Löschen">delete</mat-icon>
+  </button>
+</app-toolbar>
+<mat-list>
+  <mat-list-item style="position: relative" mat-ripple *ngFor="let shoe of orders">
+    <button mat-mini-fab color="primary" [routerLink]="['category/form/',shoe.id]">
+      {{shoe.name.substring(0,1)}}
+    </button>
+    <span [routerLink]="['cashes',shoe.id]">{{shoe.name}}<br><sup>summe:{{shoe.id}} &euro;</sup></span>
+    <span class="app-space"></span>
+    <mat-checkbox [checked]="shoe.checked" (change)="onChange($event, shoe)"></mat-checkbox>
+  </mat-list-item>
+</mat-list>
+<button [routerLink]="['category/form']" class="page_fab_button" mat-fab color="primary">
+  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+</button>

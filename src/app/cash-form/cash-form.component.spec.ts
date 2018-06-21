@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CategoryDetailComponent } from './category-detail.component';
+import { CashFormComponent } from './cash-form.component';
 
-describe('CategoryDetailComponent', () => {
-  let component: CategoryDetailComponent;
-  let fixture: ComponentFixture<CategoryDetailComponent>;
+describe('CashFormComponent', () => {
+  let component: CashFormComponent;
+  let fixture: ComponentFixture<CashFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CategoryDetailComponent ]
+      declarations: [ CashFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CategoryDetailComponent);
+    fixture = TestBed.createComponent(CashFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

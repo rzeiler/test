@@ -1,5 +1,5 @@
 {
-  "compileOnSave": false,
+  "compileOnSave": true,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
@@ -18,6 +18,9 @@
     ]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "e2e",
+    "dist",
+    ".git"
   ]
 }

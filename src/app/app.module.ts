@@ -9,8 +9,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
-
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatTooltipModule } from '@angular/material/tooltip';
 /* db */
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -18,34 +20,37 @@ import { AngularFireModule } from 'angularfire2';
 
 /* comp */
 import { AppComponent } from './app.component';
-import { ItemListComponent } from './item-list/item-list.component';
-import { ItemDetailComponent } from './item-detail/item-detail.component';
 import { UserAuthComponent } from './user-auth/user-auth.component';
-import { ItemLearnComponent } from './item-learn/item-learn.component';
 
 /* serv */
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+
+import { CategoryFormComponent } from './category-form/category-form.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+
+import { CashListComponent } from './cash-list/cash-list.component';
+import { CashFormComponent } from './cash-form/cash-form.component';
 
 
 const routes: Routes = [
-  { path: 'all', component: ItemListComponent },
-  { path: '', component: ItemLearnComponent },
-  { path: 'list', component: ItemListComponent },
-  { path: 'add', component: ItemDetailComponent },
-  { path: 'category/:id', component: CategoryDetailComponent }
+  { path: '', component: CategoryListComponent },
+  { path: 'cashes/:id', component: CashListComponent },
+  { path: 'category/form/:id', component: CategoryFormComponent },
+  { path: 'category/form', component: CategoryFormComponent }
 ];
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ItemListComponent,
-    ItemDetailComponent,
     UserAuthComponent,
-    ItemLearnComponent,
-    CategoryDetailComponent
+    ToolbarComponent,
+    CategoryFormComponent,
+    CategoryListComponent,
+    CashListComponent,
+    CashFormComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -59,6 +64,9 @@ const routes: Routes = [
     MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatCheckboxModule,
+    MatBadgeModule,
+    MatTooltipModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [Globals],

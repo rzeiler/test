@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable } from "rxjs";
 })
 export class UserAuthComponent {
 
-  private auth: AuthInfo;
+  public auth: AuthInfo;
 
   constructor(public userAuthService: UserAuthService) {
     userAuthService.authUser().subscribe((user: AuthInfo) => {
