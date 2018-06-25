@@ -1,13 +1,40 @@
 <app-toolbar toolbarTitle="Einstellungen" toolbarRetrunLink="/">
 
 </app-toolbar>
-<h3>Sichern / Wiederherstellen</h3>
-<input id="ifile" type="file" style="display:none;" (change)="changeListener($event)">
-<label for="ifile" mat-button class="mat-button">Choose Files</label>
 
+<mat-card>
+  <mat-card-title>Sichern / Wiederherstellen</mat-card-title>
+  <mat-card-actions>
+    <input id="ifile" type="file" style="display:none;" (change)="changeListener($event)">
+    <label for="ifile" mat-button class="mat-button">Wiederherstellen</label>
+    <button mat-button>Sichern</button>
+  </mat-card-actions>
+</mat-card>
 
-<button type="button" mat-button name="button">hallo</button>
-
-<p>
-  settings works!
-</p>
+<mat-card>
+  <mat-card-title>Einstellungen</mat-card-title>
+  <mat-card-subtitle>Montasgrenze</mat-card-subtitle>
+  <mat-card-content>
+    Wenn die Genze überschritten wird, erfolgt ein Information.
+  </mat-card-content>
+  <mat-card-subtitle>Jahresgrenze</mat-card-subtitle>
+  <mat-card-content>
+    Wenn die Genze überschritten wird, erfolgt ein Information.
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-title>Benutzerkonto</mat-card-title>
+  <mat-card-content>
+    Aktueller Benutzer {{auth.displayName}}
+  </mat-card-content>
+  <mat-card-actions>
+    <!--is out -->
+    <button *ngIf="!auth;" matTooltip="Anmelden mit Google!" mat-button (click)="login()">
+      Anmelden mit Goolge
+    </button>
+    <!--is in -->
+    <button *ngIf="auth;" (click)="logout()" mat-button>
+      Abmelden
+    </button>
+  </mat-card-actions>
+</mat-card>
