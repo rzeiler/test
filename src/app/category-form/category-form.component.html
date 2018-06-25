@@ -1,16 +1,33 @@
-<app-toolbar toolbarTitle="Kategory" toolbarRetrunLink="/">
-
-  <button (click)="deleteItem()" matTooltip="Löschen" mat-icon-button>
+<app-toolbar toolbarTitle="Kategorie" toolbarRetrunLink="/">
+  <button (click)="deleteItem()" class="animatedicon" *ngIf="itemExist" matTooltip="Löschen" mat-icon-button>
       <mat-icon aria-label="Löschen">delete</mat-icon>
   </button>
-
-  <button (click)="saveItem()" matTooltip="Speichern" mat-icon-button>
+  <button (click)="saveItem()" class="animatedicon" *ngIf="form.valid" matTooltip="Speichern" mat-icon-button>
       <mat-icon aria-label="Speichern">save</mat-icon>
   </button>
-
-  <button (click)="cutItem()" matTooltip="Ausschneiden" mat-icon-button>
+  <button (click)="cutItem()" class="animatedicon" *ngIf="itemExist" matTooltip="Ausschneiden" mat-icon-button>
       <mat-icon aria-label="Ausschneiden">bookmark_border</mat-icon>
   </button>
-
-
 </app-toolbar>
+<form [formGroup]="form" class="from-container">
+  <mat-form-field hintLabel="Maximal 20 Zeichen">
+    <input matInput pattern="[a-zA-ZäöüÄÖÜ]*" formControlName="titel" required maxlength="20" autocomplete="off" placeholder="Titel">
+    <mat-hint align="end">{{form.value.titel.length || 0}}/20</mat-hint>
+    <mat-error *ngIf="!form.get('titel').valid">Die angabe eines Titels mit mindestens 3 Zeichen ist erforderlich! </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select formControlName="rate" placeholder="Häufigkeit">
+      <mat-option value="3">Oft</mat-option>
+      <mat-option value="2">Nicht so oft</mat-option>
+      <mat-option value="1">Manchmal</mat-option>
+      <mat-option value="0">Unbestimmt</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="timestamp" placeholder="Erstellt am">
+  </mat-form-field>
+</form>
+<!--
+<p>Value: {{ form.value | json }}</p>
+<p>Validation status: {{ form.status }}</p>
+-->

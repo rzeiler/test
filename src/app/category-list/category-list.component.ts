@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-
 import { UserAuthService } from '../user-auth.service';
 import { AuthInfo } from "../auth-info";
 
@@ -19,6 +18,9 @@ export class CategoryListComponent implements OnInit {
     { id: 5, name: 'Auto', checked: false }
   ];
 
+  animal: string;
+  name: string;
+
   constructor(public db: AngularFireDatabase, public userAuthService: UserAuthService) {
     userAuthService.authUser().subscribe((user: AuthInfo) => {
       if (user.uid != null) {
@@ -26,7 +28,13 @@ export class CategoryListComponent implements OnInit {
         //this.itemsRef = db.list(user.uid + '/items');
       }
     });
+
+
+
   }
+
+
+
 
   ngOnInit() {
   }

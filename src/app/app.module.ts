@@ -1,6 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { Globals } from './global';
 
@@ -13,6 +14,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 /* db */
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -32,13 +37,16 @@ import { CategoryListComponent } from './category-list/category-list.component';
 
 import { CashListComponent } from './cash-list/cash-list.component';
 import { CashFormComponent } from './cash-form/cash-form.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
   { path: '', component: CategoryListComponent },
   { path: 'cashes/:id', component: CashListComponent },
   { path: 'category/form/:id', component: CategoryFormComponent },
-  { path: 'category/form', component: CategoryFormComponent }
+  { path: 'category/form', component: CategoryFormComponent },
+  { path: 'settings', component: SettingsComponent }
 ];
 
 
@@ -50,7 +58,9 @@ const routes: Routes = [
     CategoryFormComponent,
     CategoryListComponent,
     CashListComponent,
-    CashFormComponent
+    CashFormComponent,
+    DialogComponent,
+    SettingsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -67,6 +77,11 @@ const routes: Routes = [
     MatCheckboxModule,
     MatBadgeModule,
     MatTooltipModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDialogModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [Globals],

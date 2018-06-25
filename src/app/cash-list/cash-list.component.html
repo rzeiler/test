@@ -1,10 +1,22 @@
 <app-toolbar toolbarTitle="Ausgaben" toolbarRetrunLink="/" >
-
+  <button class="animatedicon" mat-icon-button *ngIf="checkedCount > 0;">
+      <mat-icon matBadge="{{checkedCount}}" matBadgeColor="primary" matBadgePosition="above after" aria-label="Löschen">delete</mat-icon>
+  </button>
   <button (click)="cutItem()" matTooltip="Ausschneiden" mat-icon-button>
       <mat-icon aria-label="Ausschneiden">bookmark</mat-icon>
   </button>
 
 </app-toolbar>
-<p>
-  cash-list works!
-</p>
+<mat-list>
+  <mat-list-item style="position: relative" mat-ripple *ngFor="let shoe of orders">
+    <span mat-button [routerLink]="['cash/form/',shoe.id]">
+     {{shoe.name}}<br/>
+     <small>summe:{{shoe.id}} &euro;</small>
+    </span>
+    <span class="app-space"></span>
+    <mat-checkbox [checked]="shoe.checked" (change)="onChange($event, shoe)"></mat-checkbox>
+  </mat-list-item>
+</mat-list>
+<button [routerLink]="['category/form']" class="page_fab_button" mat-fab color="primary">
+  <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+</button>

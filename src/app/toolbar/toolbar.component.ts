@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { style, animate, animation, animateChild, useAnimation, group, sequence, transition, state, trigger, query as q, stagger } from '@angular/animations';
-const query = (s,a,o={optional:true})=>q(s,a,o);
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css'] 
+  styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
 
