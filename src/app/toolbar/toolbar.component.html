@@ -1,10 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="nav">
   <button class="title" *ngIf="toolbarRetrunLink;" [routerLink]=toolbarRetrunLink mat-button>
     <mat-icon aria-label="Abmelden">chevron_left</mat-icon> {{toolbarTitle}}
   </button>
   <button class="title" *ngIf="!toolbarRetrunLink;" mat-button>{{toolbarTitle}}</button>
   <span class="app-space"></span>
-  <app-user-auth></app-user-auth>
   <ng-content></ng-content>
   <mat-menu #appMenu="matMenu">
     <button mat-menu-item [routerLink]="['settings']" >Einstellungen</button>

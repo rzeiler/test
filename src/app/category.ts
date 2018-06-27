@@ -1,7 +1,13 @@
 export class Category {
+
   constructor(
-    public titel: string = '',
+    public key: string = "",
+    public title: string = "",
     public timestamp?: number,
-    public rate?: number
-  ) {}
+    public rate?: number,
+    public cash?: any[]
+
+  ) { }
+
+
 }

@@ -11,9 +11,9 @@
 </app-toolbar>
 <form [formGroup]="form" class="from-container">
   <mat-form-field hintLabel="Maximal 20 Zeichen">
-    <input matInput pattern="[a-zA-ZäöüÄÖÜ]*" formControlName="titel" required maxlength="20" autocomplete="off" placeholder="Titel">
-    <mat-hint align="end">{{form.value.titel.length || 0}}/20</mat-hint>
-    <mat-error *ngIf="!form.get('titel').valid">Die angabe eines Titels mit mindestens 3 Zeichen ist erforderlich! </mat-error>
+    <input matInput pattern="[a-zA-ZäöüÄÖÜ]*" formControlName="title" required maxlength="20" autocomplete="off" placeholder="Titel">
+    <mat-hint align="end">{{form.value.title.length || 0}}/20</mat-hint>
+    <mat-error *ngIf="!form.get('title').valid">Die angabe eines Titels mit mindestens 3 Zeichen ist erforderlich! </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-select formControlName="rate" placeholder="Häufigkeit">
@@ -31,3 +31,6 @@
 <p>Value: {{ form.value | json }}</p>
 <p>Validation status: {{ form.status }}</p>
 -->
+<ng-template #loading>
+  Loading User...
+</ng-template>

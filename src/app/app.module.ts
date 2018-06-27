@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule,FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { Globals } from './global';
 
@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 /* db */
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -38,8 +39,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 
 import { CashListComponent } from './cash-list/cash-list.component';
 import { CashFormComponent } from './cash-form/cash-form.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { SettingsComponent } from './settings/settings.component';
+import { SettingsComponent, ImportComponent } from './settings/settings.component';
 
 
 const routes: Routes = [
@@ -60,7 +60,7 @@ const routes: Routes = [
     CategoryListComponent,
     CashListComponent,
     CashFormComponent,
-    DialogComponent,
+    ImportComponent,
     SettingsComponent
   ],
   imports: [
@@ -80,12 +80,15 @@ const routes: Routes = [
     MatTooltipModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    FormsModule,
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
     MatCardModule,
+    MatProgressBarModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
+  entryComponents: [ImportComponent],
   providers: [Globals],
   bootstrap: [AppComponent]
 })

@@ -5,8 +5,7 @@
 <mat-card>
   <mat-card-title>Sichern / Wiederherstellen</mat-card-title>
   <mat-card-actions>
-    <input id="ifile" type="file" style="display:none;" (change)="changeListener($event)">
-    <label for="ifile" mat-button class="mat-button">Wiederherstellen</label>
+    <button  mat-button (click)="openDialog()">Wiederherstellen</button>
     <button mat-button>Sichern</button>
   </mat-card-actions>
 </mat-card>
@@ -24,7 +23,7 @@
 </mat-card>
 <mat-card>
   <mat-card-title>Benutzerkonto</mat-card-title>
-  <mat-card-content>
+  <mat-card-content *ngIf="auth;">
     Aktueller Benutzer {{auth.displayName}}
   </mat-card-content>
   <mat-card-actions>

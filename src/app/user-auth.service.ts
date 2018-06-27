@@ -32,7 +32,7 @@ export class UserAuthService {
   login() {
     var provider = new firebase.auth.GoogleAuthProvider();
     this.angularFireAuth.auth.signInWithPopup(provider).then(credential => {
-      this.authInfo$.next(new AuthInfo(credential.uid, credential.displayName));
+      this.authInfo$.next(new AuthInfo(credential.user.uid, credential.user.displayName));
     });
   }
 

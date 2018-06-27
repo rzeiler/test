@@ -1,6 +1,7 @@
 export class AuthInfo {
 
-  constructor(public uid: string, public displayName: string) {
+
+  constructor(public uid: string, public displayName?: string) {
     uid = null;
     displayName = null;
 
