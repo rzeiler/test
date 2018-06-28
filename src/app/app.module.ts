@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule,FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { Globals } from './global';
 
@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 /* db */
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -34,19 +35,20 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 
-import { CategoryFormComponent } from './category-form/category-form.component';
+
 import { CategoryListComponent } from './category-list/category-list.component';
 
 import { CashListComponent } from './cash-list/cash-list.component';
 import { CashFormComponent } from './cash-form/cash-form.component';
 import { SettingsComponent, ImportComponent } from './settings/settings.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 
 const routes: Routes = [
   { path: '', component: CategoryListComponent },
   { path: 'cashes/:id', component: CashListComponent },
-  { path: 'category/form/:id', component: CategoryFormComponent },
-  { path: 'category/form', component: CategoryFormComponent },
+  { path: 'category/form/:id', component: EditCategoryComponent },
+  { path: 'category/form', component: EditCategoryComponent },
   { path: 'settings', component: SettingsComponent }
 ];
 
@@ -56,12 +58,12 @@ const routes: Routes = [
     AppComponent,
     UserAuthComponent,
     ToolbarComponent,
-    CategoryFormComponent,
     CategoryListComponent,
     CashListComponent,
     CashFormComponent,
     ImportComponent,
-    SettingsComponent
+    SettingsComponent,
+    EditCategoryComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -86,6 +88,7 @@ const routes: Routes = [
     MatDialogModule,
     MatCardModule,
     MatProgressBarModule,
+    MatDatepickerModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [ImportComponent],

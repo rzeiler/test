@@ -5,7 +5,19 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 import { BehaviorSubject, Observable } from "rxjs";
 
-import { AuthInfo } from "./auth-info";
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthInfo {
+  constructor(public uid: string, public displayName?: string) {
+    uid = null;
+    displayName = null;
+  }
+
+  isLoggedIn() {
+    return !!this.uid;
+  }
+}
 
 @Injectable({
   providedIn: 'root'
