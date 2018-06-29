@@ -1,9 +1,15 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { Globals } from './global';
+
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/de';
+
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, 'de');
 
 /* material */
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -21,6 +27,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 /* db */
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -41,14 +49,15 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { CashListComponent } from './cash-list/cash-list.component';
 import { CashFormComponent } from './cash-form/cash-form.component';
 import { SettingsComponent, ImportComponent } from './settings/settings.component';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { EditCategoryComponent, DeleteComponent } from './edit-category/edit-category.component';
+
 
 
 const routes: Routes = [
   { path: '', component: CategoryListComponent },
-  { path: 'cashes/:id', component: CashListComponent },
-  { path: 'category/form/:id', component: EditCategoryComponent },
-  { path: 'category/form', component: EditCategoryComponent },
+  { path: 'category/:id/cash', component: CashListComponent },
+  { path: 'category/:id', component: EditCategoryComponent },
+  { path: 'category', component: EditCategoryComponent },
   { path: 'settings', component: SettingsComponent }
 ];
 
@@ -63,7 +72,8 @@ const routes: Routes = [
     CashFormComponent,
     ImportComponent,
     SettingsComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    DeleteComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -89,10 +99,12 @@ const routes: Routes = [
     MatCardModule,
     MatProgressBarModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule,
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
-  entryComponents: [ImportComponent],
-  providers: [Globals],
+  entryComponents: [ImportComponent, DeleteComponent],
+  providers: [Globals, MatNativeDateModule, { provide: LOCALE_ID, useValue: 'de' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

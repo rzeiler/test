@@ -4,4 +4,5 @@ export class Category {
   createdate: number = 0;
   rating: number = 0;
   cash: any[] = [];
+  isdeleted: boolean = false;
 }

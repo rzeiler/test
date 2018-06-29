@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserAuthService } from '../user-auth.service';
-import { AuthInfo } from "../auth-info";
-
-/* for dialog */
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { map } from 'rxjs/operators';
-import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs';
+import { UserAuthService, AuthInfo } from '../user-auth.service';
+import { AdService } from '../ad.service';
 
 import { Category } from "../category";
 
@@ -17,24 +11,21 @@ import { Category } from "../category";
 })
 export class CategoryListComponent {
 
-  categoryItemsRef: AngularFireList<any>;
-  categoryItems: Observable<Category[]>;
+  ad: any;
+  categoryItems: Category[];
 
-  constructor(public db: AngularFireDatabase, public userAuthService: UserAuthService) {
+  constructor(public userAuthService: UserAuthService, private adService: AdService) {
+
     userAuthService.authUser().subscribe((user: AuthInfo) => {
       if (user.uid != null) {
-        this.categoryItemsRef = db.list('/' + user.uid + '/category/');
-        this.categoryItems = this.categoryItemsRef.snapshotChanges().pipe(
-          map(changes =>
-            changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-          )
-        );
+
+        this.ad = this.adService.listAd(user.uid);
+        this.ad.snapshotChanges().subscribe(x => {
+          const data = x.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+          this.categoryItems = data;
+        });
       }
     });
   }
-
-
-
-
 
 }

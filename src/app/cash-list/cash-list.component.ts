@@ -1,41 +1,41 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserAuthService, AuthInfo } from '../user-auth.service';
+import { CashService } from '../cash.service';
+import { Cash } from "../cash";
 
 @Component({
   selector: 'app-cash-list',
   templateUrl: './cash-list.component.html',
   styleUrls: ['./cash-list.component.css']
 })
-export class CashListComponent implements OnInit {
+export class CashListComponent {
 
-  checkedCount: number = 0;
-  orders = [
-    { id: 1, name: 'Tank', checked: false },
-    { id: 2, name: 'Haus', checked: false },
-    { id: 3, name: 'Versicherung', checked: false },
-    { id: 4, name: 'Freizeit', checked: false },
-    { id: 5, name: 'Auto', checked: false }
-  ];
+  ad: any;
+  cashItems: Cash[];
+  ai: AuthInfo;
 
-  constructor() { }
+  constructor(
+    public userAuthService: UserAuthService,
+    public cashService: CashService,
+    public route: ActivatedRoute,
+    public router: Router) {
 
-  ngOnInit() {
+    userAuthService.authUser().subscribe((user: AuthInfo) => {
+      if (user.uid != null) {
+        this.ai = user;
+        route.params.subscribe(params => {
+          this.ad = this.cashService.listAd(params.id, user.uid);
+          this.ad.snapshotChanges().subscribe(x => {
+            const data = x.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+            //  this.cashItems = data;
+
+            this.cashItems = data.sort((a, b) => b.createdate - a.createdate)
+
+            //console.log();
+          });
+        });
+      }
+    });
   }
-
-  cutItem() { }
-
-  onChange(event, item) {
-
-    item.checked = !item.checked;
-
-    this.checkedCount =
-      this.orders.filter(function(item) {
-        return item.checked === true;
-      }).length;
-
-  }
-
-  onVoted(agreed: boolean) {
-    alert("agreed" + agreed);
-  }
-
 }

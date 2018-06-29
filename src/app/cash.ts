@@ -1,7 +1,8 @@
 export class Cash {
-  constructor(
-    public description: string = '',
-    public timestamp?: number,
-    public sum: number = 0
-  ) { }
+  key: string;
+  content: string;
+  createdate: number;
+  total: number;
+  repeat: number;
+  iscloned: boolean;
 }

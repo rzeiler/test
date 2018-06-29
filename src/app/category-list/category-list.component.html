@@ -1,18 +1,12 @@
-<app-toolbar toolbarTitle="Kategortien" (voted)="onVoted($event)" toolbarDeleteMatBadge="{{checkedCount}}">
-  <button class="animatedicon" mat-icon-button *ngIf="checkedCount > 0;">
-      <mat-icon matBadge="{{checkedCount}}" matBadgeColor="primary" matBadgePosition="above after" aria-label="Löschen">delete</mat-icon>
-  </button>
-</app-toolbar>
+<app-toolbar toolbarTitle="Kategortien"></app-toolbar>
 <mat-list>
-  <mat-list-item *ngFor="let category of categoryItems | async">
-    <button mat-mini-fab color="primary" [routerLink]="['category/form/',category.key]">
+  <mat-list-item *ngFor="let category of categoryItems">
+    <button mat-mini-fab color="primary" [routerLink]="['category/',category.key]">
       {{category.title.substring(0,1)}}
     </button>
-    <span [routerLink]="['cashes',category.key]">{{category.title}}<br><sup>summe:{{category.key}} &euro;</sup></span>
+    <span [routerLink]="['category',category.key,'cash']">{{category.title}}<br><sup>summe:{{category.key}} &euro;</sup></span>
   </mat-list-item>
 </mat-list>
-<button [routerLink]="['category/form']" class="page_fab_button" mat-fab color="primary">
+<button [routerLink]="['category']" class="page_fab_button" mat-fab color="primary">
   <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
 </button>
-
-https://firebase.google.com/docs/database/rest/retrieve-data

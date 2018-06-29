@@ -58,7 +58,7 @@ export class ImportComponent {
             rating: element.rating,
             user: element.user,
             cash: [],
-            checked: false
+            isdeleted: Boolean(element.isdeleted)
           }).then((item) => {
             /* set title */
             self.Info = element.title;
@@ -76,7 +76,7 @@ export class ImportComponent {
                 repeat: cash.repeat,
                 total: cash.total,
                 iscloned: cash.iscloned,
-                checked: false
+                isdeleted: Boolean(cash.isdeleted)
               }).then((item) => {
                 currentCashCount++;
                 if (cashLength == currentCashCount)

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { Category } from './category';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AdService {
   constructor(private db: AngularFireDatabase) { }
 
   /// Creates an Ad, then returns as an object
-  createAd(): AngularFireObject<Category> {
+  creatssdeAd(): AngularFireObject<Category> {
     const adDefault = new Category()
     const adKey = this.db.list('/ads').push(adDefault).key
     return this.db.object('/ads/' + adKey)
@@ -21,8 +21,20 @@ export class AdService {
     return ob;
   }
 
-  /// Updates an existing Ad
+  createAd(uid: string, data: any) {
+    return   this.db.list('/' + uid + '/category').push(data);
+  }
+
   updateAd(ad: AngularFireObject<Category>, data: any) {
     return ad.update(data)
   }
+
+  listAd(uid: string): AngularFireList<Category> {
+    const ob = this.db.list<Category>('/' + uid + '/category/',
+      ref => ref.orderByChild('isdeleted').equalTo(false)
+    );
+
+    return ob;
+  }
+
 }
